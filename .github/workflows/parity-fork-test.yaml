@@ -31,12 +31,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
       - name: Build smoke-test artifacts
         env:
           INPUT_REF: ${{ inputs.plugin_ref }}
           INCLUDE_TEST_CONFIG: ${{ inputs.include_test_config }}
         run: |
           mkdir -p artifacts
+          # Same base config the real caller ships ("Always include the root-level
+          # default config" — workspace-tests.yaml): backend.baseUrl, sqlite, guest.
+          cp smoke-tests/app-config.yaml artifacts/app-config.yaml
           REF="${INPUT_REF:-$DEFAULT_PLUGIN_REF}"
           printf 'plugins:\n  - package: "%s"\n' "$REF" > artifacts/dynamic-plugins.test.yaml
           if [ "$INCLUDE_TEST_CONFIG" = "true" ]; then
