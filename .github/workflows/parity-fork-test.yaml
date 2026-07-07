@@ -14,6 +14,10 @@ on:
           pure-backend plugin.
         type: string
         required: false
+      include_test_config:
+        description: Also fabricate app-config.test.yaml + test.env in the artifact.
+        type: boolean
+        default: true
 
 env:
   DEFAULT_PLUGIN_REF: "oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/roadiehq-scaffolder-backend-module-http-request:bs_1.49.4__5.6.0!roadiehq-scaffolder-backend-module-http-request"
@@ -30,14 +34,17 @@ jobs:
       - name: Build smoke-test artifacts
         env:
           INPUT_REF: ${{ inputs.plugin_ref }}
+          INCLUDE_TEST_CONFIG: ${{ inputs.include_test_config }}
         run: |
           mkdir -p artifacts
           REF="${INPUT_REF:-$DEFAULT_PLUGIN_REF}"
           printf 'plugins:\n  - package: "%s"\n' "$REF" > artifacts/dynamic-plugins.test.yaml
-          # Exercise the optional inputs both jobs consume: an extra config layer
-          # and an env file with a placeholder var.
-          printf 'app:\n  title: "Parity fork test ${PARITY_TEST_VAR:-default-title}"\n' > artifacts/app-config.test.yaml
-          printf 'PARITY_TEST_VAR=from-test-env\n' > artifacts/test.env
+          if [ "$INCLUDE_TEST_CONFIG" = "true" ]; then
+            # Exercise the optional inputs both jobs consume: an extra config layer
+            # and an env file with a placeholder var.
+            printf 'app:\n  title: "Parity fork test ${PARITY_TEST_VAR}"\n' > artifacts/app-config.test.yaml
+            printf 'PARITY_TEST_VAR=from-test-env\n' > artifacts/test.env
+          fi
           echo "== artifacts:"; ls -la artifacts; cat artifacts/dynamic-plugins.test.yaml
 
       - name: Upload smoke test artifacts
