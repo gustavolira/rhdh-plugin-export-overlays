@@ -1,0 +1,54 @@
+# FORK-ONLY test harness for PR #2735 — NOT meant to merge upstream.
+# Fabricates the same smoke-test-artifacts bundle the real callers produce
+# (workspace-tests.yaml uploads the workspace's smoke-tests/ dir) and invokes the
+# reusable run-workspace-smoke-tests.yaml, so the new native-smoke + parity-report
+# jobs can be exercised end-to-end on the fork before merging.
+name: Parity Fork Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      plugin_ref:
+        description: >-
+          OCI package ref to smoke (oci://…:tag!name). Defaults to the known-good
+          pure-backend plugin.
+        type: string
+        required: false
+
+env:
+  DEFAULT_PLUGIN_REF: "oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/roadiehq-scaffolder-backend-module-http-request:bs_1.49.4__5.6.0!roadiehq-scaffolder-backend-module-http-request"
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Build smoke-test artifacts
+        env:
+          INPUT_REF: ${{ inputs.plugin_ref }}
+        run: |
+          mkdir -p artifacts
+          REF="${INPUT_REF:-$DEFAULT_PLUGIN_REF}"
+          printf 'plugins:\n  - package: "%s"\n' "$REF" > artifacts/dynamic-plugins.test.yaml
+          # Exercise the optional inputs both jobs consume: an extra config layer
+          # and an env file with a placeholder var.
+          printf 'app:\n  title: "Parity fork test ${PARITY_TEST_VAR:-default-title}"\n' > artifacts/app-config.test.yaml
+          printf 'PARITY_TEST_VAR=from-test-env\n' > artifacts/test.env
+          echo "== artifacts:"; ls -la artifacts; cat artifacts/dynamic-plugins.test.yaml
+
+      - name: Upload smoke test artifacts
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: smoke-test-artifacts
+          path: artifacts
+          if-no-files-found: error
+
+  smoke:
+    needs: prepare
+    uses: ./.github/workflows/run-workspace-smoke-tests.yaml
+    with:
+      target-branch: main
