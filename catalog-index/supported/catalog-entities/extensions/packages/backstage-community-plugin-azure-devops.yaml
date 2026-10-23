@@ -1,0 +1,31 @@
+apiVersion: extensions.backstage.io/v1alpha1
+kind: Package
+metadata:
+  name: backstage-community-plugin-azure-devops
+  namespace: rhdh
+  title: "Azure DevOps Frontend"
+  links:
+    - url: https://red.ht/rhdh
+      title: Homepage
+    - url: https://github.com/backstage/community-plugins/issues
+      title: Bugs
+    - title: Source Code
+      url: https://github.com/backstage/community-plugins/tree/main/workspaces/azure-devops
+  annotations:
+    backstage.io/source-location: url:https://github.com/backstage/community-plugins/tree/main/workspaces/azure-devops
+  tags: []
+spec:
+  packageName: "@backstage-community/plugin-azure-devops"
+  dynamicArtifact: oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/backstage-community-plugin-azure-devops:bs_1.54.9__0.34.0
+  version: 0.34.0
+  backstage:
+    role: frontend-plugin
+    supportedVersions: 1.54.9
+  author: Red Hat
+  support: community
+  lifecycle: active
+  partOf:
+    - azure-devops
+  appConfigNotRequired: true
+  appConfigExamples: []
+

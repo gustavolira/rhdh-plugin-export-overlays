@@ -1,0 +1,31 @@
+apiVersion: extensions.backstage.io/v1alpha1
+kind: Package
+metadata:
+  name: roadiehq-backstage-plugin-jira
+  namespace: rhdh
+  title: "Jira"
+  links:
+    - url: https://red.ht/rhdh
+      title: Homepage
+    - url: https://github.com/RoadieHQ/roadie-backstage-plugins/issues
+      title: Bugs
+    - title: Source Code
+      url: https://github.com/RoadieHQ/roadie-backstage-plugins/tree/main/plugins/frontend/backstage-plugin-jira
+  annotations:
+    backstage.io/source-location: url:https://github.com/RoadieHQ/roadie-backstage-plugins/tree/main/plugins/frontend/backstage-plugin-jira
+  tags: []
+spec:
+  packageName: "@roadiehq/backstage-plugin-jira"
+  dynamicArtifact: oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/roadiehq-backstage-plugin-jira:bs_1.54.9__2.16.0
+  version: 2.16.0
+  backstage:
+    role: frontend-plugin
+    supportedVersions: 1.54.9
+  author: Roadie
+  support: community
+  lifecycle: active
+  partOf:
+    - jira
+  appConfigNotRequired: true
+  appConfigExamples: []
+

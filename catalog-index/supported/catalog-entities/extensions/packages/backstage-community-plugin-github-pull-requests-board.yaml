@@ -1,0 +1,29 @@
+apiVersion: extensions.backstage.io/v1alpha1
+kind: Package
+metadata:
+  name: backstage-community-plugin-github-pull-requests-board
+  namespace: rhdh
+  title: "GitHub Pull Requests Board"
+  links:
+    - title: Issues
+      url: https://github.com/backstage/community-plugins/issues/new/choose
+    - title: Plugin README
+      url: https://github.com/backstage/community-plugins/blob/main/workspaces/github-pull-requests-board/plugins/github-pull-requests-board/README.md
+    - title: Plugin CHANGELOG
+      url: https://github.com/backstage/community-plugins/blob/main/workspaces/github-pull-requests-board/plugins/github-pull-requests-board/CHANGELOG.md
+    - title: Source Code
+      url: https://github.com/backstage/community-plugins/tree/main/workspaces/github-pull-requests-board/plugins/github-pull-requests-board
+spec:
+  packageName: "@backstage-community/plugin-github-pull-requests-board"
+  dynamicArtifact: oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/backstage-community-plugin-github-pull-requests-board:bs_1.54.9__1.4.0
+  version: 1.4.0
+  backstage:
+    role: frontend-plugin
+    supportedVersions: 1.54.9
+  author: DAZN
+  support: community
+  lifecycle: active
+  # partOf:
+  #   - github-pull-requests-board
+  appConfigNotRequired: true
+  appConfigExamples: []

@@ -1,0 +1,30 @@
+apiVersion: extensions.backstage.io/v1alpha1
+kind: Package
+metadata:
+  name: roadiehq-backstage-plugin-argo-cd
+  namespace: rhdh
+  title: "Roadie ArgoCD"
+  links:
+    - url: https://red.ht/rhdh
+      title: Homepage
+    - url: https://issues.redhat.com/browse/RHIDP
+      title: Bugs
+    - title: Source Code
+      url: https://github.com/RoadieHQ/roadie-backstage-plugins/tree/main/plugins/frontend/backstage-plugin-argo-cd
+  annotations:
+    backstage.io/source-location: url:https://github.com/RoadieHQ/roadie-backstage-plugins/tree/main/plugins/frontend/backstage-plugin-argo-cd
+  tags: []
+spec:
+  packageName: "@roadiehq/backstage-plugin-argo-cd"
+  dynamicArtifact: oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/roadiehq-backstage-plugin-argo-cd:bs_1.54.9__2.13.0
+  version: 2.13.0
+  backstage:
+    role: frontend-plugin
+    supportedVersions: 1.54.9
+  author: Roadie
+  support: community
+  lifecycle: active
+  partOf:
+    - roadie-argocd
+  appConfigNotRequired: true
+  appConfigExamples: []

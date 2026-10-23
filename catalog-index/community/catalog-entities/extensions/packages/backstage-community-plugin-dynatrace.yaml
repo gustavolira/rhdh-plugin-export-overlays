@@ -1,0 +1,31 @@
+apiVersion: extensions.backstage.io/v1alpha1
+kind: Package
+metadata:
+  name: backstage-community-plugin-dynatrace
+  namespace: rhdh
+  title: "Dynatrace"
+  links:
+    - url: https://red.ht/rhdh
+      title: Homepage
+    - url: https://github.com/backstage/community-plugins/issues
+      title: Bugs
+    - title: Source Code
+      url: https://github.com/backstage/community-plugins/tree/main/workspaces/dynatrace
+  annotations:
+    backstage.io/source-location: url:https://github.com/backstage/community-plugins/tree/main/workspaces/dynatrace
+  tags: []
+spec:
+  packageName: "@backstage-community/plugin-dynatrace"
+  # Tag: bs_1.54.9__10.23.0
+  dynamicArtifact: "oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/backstage-community-plugin-dynatrace@sha256:2598310728b74664d0b711a2803686d7acdc39b2c9e32a95a85b5b4139fa51eb"
+  version: 10.23.0
+  backstage:
+    role: frontend-plugin
+    supportedVersions: 1.54.9
+  author: Dynatrace
+  support: community
+  lifecycle: active
+  partOf:
+    - dynatrace-community
+  appConfigNotRequired: true
+  appConfigExamples: []

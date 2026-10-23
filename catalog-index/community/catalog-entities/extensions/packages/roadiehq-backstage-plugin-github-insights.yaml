@@ -1,0 +1,31 @@
+apiVersion: extensions.backstage.io/v1alpha1
+kind: Package
+metadata:
+  name: roadiehq-backstage-plugin-github-insights
+  namespace: rhdh
+  title: "GitHub Insights"
+  links:
+    - url: https://red.ht/rhdh
+      title: Homepage
+    - url: https://github.com/RoadieHQ/roadie-backstage-plugins/issues
+      title: Bugs
+    - title: Source Code
+      url: https://github.com/RoadieHQ/roadie-backstage-plugins/tree/main/plugins/frontend/backstage-plugin-github-insights
+  annotations:
+    backstage.io/source-location: url:https://github.com/RoadieHQ/roadie-backstage-plugins/tree/main/plugins/frontend/backstage-plugin-github-insights
+  tags: []
+spec:
+  packageName: "@roadiehq/backstage-plugin-github-insights"
+  # Tag: bs_1.54.9__3.6.0
+  dynamicArtifact: "oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/roadiehq-backstage-plugin-github-insights@sha256:64d10b7c1a3b55b718fc52da7aebc54fbe9d3b6a0e3c6e05c39f2fbd942aff3e"
+  version: 3.6.0
+  backstage:
+    role: frontend-plugin
+    supportedVersions: 1.54.9
+  author: Roadie
+  support: community
+  lifecycle: active
+  partOf:
+    - github-insights
+  appConfigNotRequired: true
+  appConfigExamples: []

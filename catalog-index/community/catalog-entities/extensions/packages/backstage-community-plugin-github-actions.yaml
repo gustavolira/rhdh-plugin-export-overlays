@@ -1,0 +1,31 @@
+apiVersion: extensions.backstage.io/v1alpha1
+kind: Package
+metadata:
+  name: backstage-community-plugin-github-actions
+  namespace: rhdh
+  title: "GitHub Actions"
+  links:
+    - url: https://red.ht/rhdh
+      title: Homepage
+    - url: https://github.com/backstage/community-plugins/issues
+      title: Bugs
+    - title: Source Code
+      url: https://github.com/backstage/community-plugins/tree/main/workspaces/github/plugins/github-actions
+  annotations:
+    backstage.io/source-location: url:https://github.com/backstage/community-plugins/tree/main/workspaces/github
+  tags: []
+spec:
+  packageName: "@backstage-community/plugin-github-actions"
+  # Tag: bs_1.54.9__1.4.0
+  dynamicArtifact: "oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/backstage-community-plugin-github-actions@sha256:e211e6eefe4f578c3210a0a856a71442babb4e86d8ab00806653b4405730e468"
+  version: 1.4.0
+  backstage:
+    role: frontend-plugin
+    supportedVersions: 1.54.9
+  author: Red Hat
+  support: community
+  lifecycle: active
+  partOf:
+    - github-actions
+  appConfigNotRequired: true
+  appConfigExamples: []

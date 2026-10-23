@@ -1,0 +1,38 @@
+apiVersion: extensions.backstage.io/v1alpha1
+kind: Package
+metadata:
+  name: backstage-plugin-techdocs-backend
+  namespace: rhdh
+  title: "TechDocs Backend"
+  links:
+    - url: https://red.ht/rhdh
+      title: Homepage
+    - url: https://github.com/backstage/backstage/issues
+      title: Bugs
+    - title: Source Code
+      url: https://github.com/backstage/backstage/tree/master/plugins/techdocs-backend
+  annotations:
+    backstage.io/source-location: url:https://github.com/backstage/backstage/tree/master/plugins/techdocs-backend
+  tags: []
+spec:
+  packageName: "@backstage/plugin-techdocs-backend"
+  # Tag: bs_1.54.9__2.2.5
+  dynamicArtifact: "oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/backstage-plugin-techdocs-backend@sha256:f3290b8f57254a525e67fcc5e1fe82ef5f46a4ef6dd30ad92ac83a3ca229106f"
+  version: 2.2.5
+  backstage:
+    role: backend-plugin
+    supportedVersions: 1.54.9
+  author: Red Hat
+  support: generally-available
+  lifecycle: active
+  partOf:
+    - techdocs
+  appConfigExamples:
+    - title: Default configuration
+      content:
+        techdocs:
+          builder: local
+          generator:
+            runIn: local
+          publisher:
+            type: local

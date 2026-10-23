@@ -1,0 +1,31 @@
+apiVersion: extensions.backstage.io/v1alpha1
+kind: Package
+metadata:
+  name: pagerduty-backstage-plugin
+  namespace: rhdh
+  title: "PagerDuty Frontend"
+  links:
+    - url: https://red.ht/rhdh
+      title: Homepage
+    - url: https://github.com/PagerDuty/backstage-plugins/issues
+      title: Bugs
+    - title: Source Code
+      url: https://github.com/PagerDuty/backstage-plugins/tree/main/plugins/backstage-plugin
+  annotations:
+    backstage.io/source-location: url:https://github.com/PagerDuty/backstage-plugins/tree/main/plugins/backstage-plugin
+  tags: []
+spec:
+  packageName: "@pagerduty/backstage-plugin"
+  # Tag: bs_1.54.9__0.21.0
+  dynamicArtifact: "oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/pagerduty-backstage-plugin@sha256:5be1e6d6609060fc0395e95608c2efda053e5c18dcf55ac4da62f8529dca0ab4"
+  version: 0.21.0
+  backstage:
+    role: frontend-plugin
+    supportedVersions: 1.54.9
+  author: Red Hat
+  support: community
+  lifecycle: active
+  partOf:
+    - pagerduty
+  appConfigNotRequired: true
+  appConfigExamples: []
