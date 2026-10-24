@@ -1,1 +1,3 @@
 plugins/catalog-backend-module-annotate-scm-slug:
+plugins/catalog-backend-module-aws-config:
+plugins/catalog-backend-module-codeowners:
