@@ -18,7 +18,7 @@ metadata:
 spec:
   packageName: "@backstage-community/plugin-catalog-backend-module-scaffolder-relation-processor"
   # Tag: bs_1.54.9__2.17.1
-  dynamicArtifact: "oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/backstage-community-plugin-catalog-backend-module-scaffolder-relation-processor@sha256:ccef6dfba50d867515441a55ab0dd614570ecc7656921fff20ec28c812250de0"
+  dynamicArtifact: "oci://ghcr.io/redhat-developer/rhdh-plugin-export-overlays/backstage-community-plugin-catalog-backend-module-scaffolder-relation-processor@sha256:b5502aff1979cd9ad4e89def4958fcc67eef2682791a38a3fa39cee5e7615221"
   version: 2.17.1
   backstage:
     role: backend-plugin-module
